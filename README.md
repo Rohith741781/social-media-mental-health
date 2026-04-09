@@ -1,33 +1,59 @@
-# Social Media & Mental Health: ML Impact Analysis
+# 📱 Social Media & Mental Health Analysis
 
-An end-to-end Machine Learning pipeline tracking the clinical impact of screen time variations, sleep, and social comparison triggers across demographics, featuring a Neural Network build and Professional Streamlit Dashboard.
+## 3D Interactive Dashboard | Male vs Female Behavior | Mental Health Impact
 
-## Setup Instructions
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Three.js](https://img.shields.io/badge/Three.js-r128-green)
+![License](https://img.shields.io/badge/license-MIT-orange)
 
-1. **Install Python Requirements:**
-   Download dependencies from `requirements.txt`:
-   ```bash
-   pip install -r requirements.txt
-   ```
+---
 
-2. **Execute Full ML Pipeline:**
-   Generate all data splits, train the Logistic Regression, Random Forest, XGBoost, and Neural Network models, map K-Means clusters + Association rules, and natively export the weights to `/output`.
-   ```bash
-   python master_pipeline.py
-   ```
-   *Note: This command will create `.pkl` models and `.png` exploratory plots locally.*
+## 🧠 Project Overview
 
-3. **Launch the Dashboard:**
-   Render the fully styled frontend via Streamlit to view data insights and Plotly graphs in your browser:
-   ```bash
-   streamlit run app.py
-   ```
+This project analyzes the relationship between **social media usage** and **mental health** (anxiety & depression), comparing behavioral patterns between **Males** and **Females**.
 
-## Directory Structure
-- `master_pipeline.py` - Core ML logic, model training, metric execution.
-- `app.py` - Plotly-backed Streamlit interactive application.
-- `dashboard.html` - Static, standalone Plotly.js visual dashboard.
-- `output/` - Contains saved joblib models and PNG metric charts.
+### Problem Statement
+> Excessive screen time and prolonged engagement on social media platforms are increasingly associated with anxiety, depression, and other mental health challenges. The impact differs across gender groups due to differences in digital behavior, emotional expression, and coping mechanisms.
 
-## Insights
-This module discovers that while overall screen volume heavily triggers male depression onset, specific *Social Comparison* triggers and *Late Night Usage* heavily isolate and compound female anxiety clusters. Explore `dashboard.html` or the Streamlit app for Executive Recommendations.
+### Key Questions Answered
+- What are males watching on social media?
+- What are females watching on social media?
+- How many hours does each gender spend?
+- How does screen time affect mental health?
+
+---
+
+## ✨ Features
+
+### 🎨 3D Visual Effects
+- **Particle Background System** - Floating particles responding to mouse movement
+- **3D Tilt Cards** - Interactive cards with depth effect on hover
+- **Rotatable 3D Charts** - Drag to view from any angle
+- **Animated Risk Gauges** - Sweeping needle animation showing risk percentages
+
+### 📊 Interactive Data Visualization
+| Chart Type | Description |
+|------------|-------------|
+| 3D Bar Chart | Screen time & risk comparison by gender |
+| 3D Scatter Plot | GAD-7 vs PHQ-9 correlation |
+| 3D Surface Heatmap | Risk mapping based on behavior |
+| 3D Pie Chart | Platform distribution with exploding segments |
+| 3D Carousel | Platform usage with click details |
+
+### 📈 Key Metrics Tracked
+- Screen Time (hours/day)
+- GAD-7 Score (Anxiety)
+- PHQ-9 Score (Depression)
+- Late Night Usage (%)
+- Social Comparison Trigger (%)
+- High Risk Users (%)
+
+---
+
+## 🚀 Live Demo
+
+Open `index.html` in any modern browser - No server required!
+
+```bash
+# Just double-click the file
+open index.html
