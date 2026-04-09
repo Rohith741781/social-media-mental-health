@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media & Mental Health Dashboard</title>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #1A1A2E;
+            --text-light: #F5F5F7;
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --success: #4CAF50;
+            --danger: #FF5252;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .header i {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .metric-card.pink { border-bottom-color: var(--secondary); }
+        .metric-card.green { border-bottom-color: var(--success); }
+        .metric-card.red { border-bottom-color: var(--danger); }
+
+        .metric-title {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .chart-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            height: 400px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: rgba(108, 99, 255, 0.2);
+            color: var(--primary);
+        }
+
+        /* Recommendations styling */
+        .rec-box {
+            background: var(--card-bg);
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 12px 12px 0;
+        }
+        .rec-box strong { color: var(--secondary); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1><i class="fa-solid fa-brain"></i> Social Media & Mental Health Impact</h1>
+        <p>Standalone Executive Dashboard • Male vs Female Analysis</p>
+    </div>
+
+    <!-- METRICS -->
+    <div class="grid-4">
+        <div class="metric-card">
+            <div class="metric-title">Total Users Analyzed</div>
+            <div class="metric-value">7,163</div>
+        </div>
+        <div class="metric-card pink">
+            <div class="metric-title">High Risk Clinical %</div>
+            <div class="metric-value">28.4%</div>
+        </div>
+        <div class="metric-card green">
+            <div class="metric-title">Avg Screen Time</div>
+            <div class="metric-value">5.2 hrs</div>
+        </div>
+        <div class="metric-card red">
+            <div class="metric-title">Avg Sleep</div>
+            <div class="metric-value">6.8 hrs</div>
+        </div>
+    </div>
+
+    <!-- CHARTS ROW 1 -->
+    <div class="grid-2">
+        <div class="chart-container" id="genderPie"></div>
+        <div class="chart-container" id="riskBar"></div>
+    </div>
+
+    <!-- CHARTS ROW 2 -->
+    <div class="grid-2">
+        <div class="chart-container" id="screenAnxiety"></div>
+        <div class="chart-container" id="screenDepression"></div>
+    </div>
+
+    <h2>Model Performance Metrics</h2>
+    <table>
+        <tr>
+            <th>Model</th>
+            <th>Accuracy</th>
+            <th>Precision</th>
+            <th>Recall (Important)</th>
+            <th>F1-Score</th>
+        </tr>
+        <tr><td>Neural Network</td><td>85.4%</td><td>82.4%</td><td>81.6%</td><td>82.0%</td></tr>
+        <tr><td>Logistic Regression</td><td>81.4%</td><td>79.6%</td><td>82.7%</td><td>81.1%</td></tr>
+        <tr><td>Random Forest</td><td>80.7%</td><td>79.7%</td><td>80.5%</td><td>80.1%</td></tr>
+        <tr><td>XGBoost</td><td>79.9%</td><td>78.2%</td><td>81.2%</td><td>79.7%</td></tr>
+    </table>
+
+    <h2>Actionable Interventions</h2>
+    <div class="rec-box">
+        <strong>1. Behavioral Wind-Down:</strong> High screen time + Late night = Poor sleep. <i>Implement dark mode lockouts post-midnight.</i>
+    </div>
+    <div class="rec-box">
+        <strong>2. Persona Triage:</strong> Unrecognized "High-Risk Addicts" hide as ordinary users. <i>Route these clusters immediately to psychiatric API funnels.</i>
+    </div>
+    <div class="rec-box">
+        <strong>3. Gendered Content Caps:</strong> Females incur immense harm from comparative content. <i>Inject non-competitive aesthetic content into feeds past 45 mins.</i>
+    </div>
+    <div class="rec-box">
+        <strong>4. Like Metrics:</strong> Social Comparison is the highest correlator to female depression. <i>Provide Opt-out mechanism for public like-counts.</i>
+    </div>
+
+    <script>
+        // Common Plotly Layout settings for Dark Mode
+        const layoutDark = {
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            font: { color: '#F5F5F7' },
+            xaxis: { gridcolor: 'rgba(255,255,255,0.1)' },
+            yaxis: { gridcolor: 'rgba(255,255,255,0.1)' }
+        };
+
+        // 1. Gender Pie Chart
+        Plotly.newPlot('genderPie', [{
+            values: [3621, 3542],
+            labels: ['Male', 'Female'],
+            type: 'pie',
+            marker: { colors: ['#6C63FF', '#FF6584'] },
+            hole: 0.4
+        }], { ...layoutDark, title: 'Demographics by Gender' });
+
+        // 2. Risk Bar Chart
+        Plotly.newPlot('riskBar', [{
+            x: ['Male', 'Female'],
+            y: [27.5, 28.9],
+            type: 'bar',
+            marker: { color: ['#6C63FF', '#FF6584'] }
+        }], { ...layoutDark, title: 'High Risk % by Gender' });
+
+        // 3. Scatter Placeholder (Screen vs Anxiety) - Mock Data mapping regression visually
+        Plotly.newPlot('screenAnxiety', [
+            { x: [1,2,3,4,5,6,7,8], y: [2,3,6,7,10,13,15,18], mode: 'markers', name: 'Female', marker: {color: '#FF6584'} },
+            { x: [1,2,3,4,5,6,7,8], y: [1,2,4,5,7,9,11,14], mode: 'markers', name: 'Male', marker: {color: '#6C63FF'} }
+        ], { ...layoutDark, title: 'Daily Hrs vs GAD-7 Anxiety' });
+
+        // 4. Scatter Placeholder (Screen vs Depression) 
+        Plotly.newPlot('screenDepression', [
+            { x: [1,2,3,4,5,6,7,8], y: [1,2,5,8,12,14,16,21], mode: 'markers', name: 'Female', marker: {color: '#FF6584'} },
+            { x: [1,2,3,4,5,6,7,8], y: [0,1,3,4,8,12,14,17], mode: 'markers', name: 'Male', marker: {color: '#6C63FF'} }
+        ], { ...layoutDark, title: 'Daily Hrs vs PHQ-9 Depression' });
+
+    </script>
+</body>
+</html>
